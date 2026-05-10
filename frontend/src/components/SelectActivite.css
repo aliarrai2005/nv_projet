@@ -1,0 +1,101 @@
+body {
+  font-family: 'Nunito', sans-serif;
+  background: #f0f5e8;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.booking-wrapper {
+  display: flex;
+  width: 900px;
+  min-height: 520px;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(70,120,20,0.15);
+}
+
+.booking-main {
+  flex: 1;
+  padding: 2.5rem 2.8rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-header h1 {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #1e2a10;
+}
+
+.header-line {
+  height: 2px;
+  background: #eee;
+  margin-top: 1rem;
+  border-radius: 99px;
+}
+
+.booking-form {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 500px;
+}
+
+.form-group { display: flex; flex-direction: column; gap: 0.45rem; }
+
+.form-group label { font-size: 0.9rem; font-weight: 700; color: #1e2a10; }
+
+.required { color: #d63031; margin-right: 2px; }
+
+.select-wrapper { position: relative; }
+
+.select-wrapper select {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  border: 1.8px solid #c8e49a;
+  border-radius: 8px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #7a9060;
+  background: #fff;
+  appearance: none;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.select-wrapper select:focus {
+  outline: none;
+  border-color: #5d9a27;
+  box-shadow: 0 0 0 3px rgba(93,154,39,0.15);
+}
+
+.select-arrow {
+  position: absolute;
+  right: 0.9rem; top: 50%;
+  transform: translateY(-50%);
+  width: 17px; height: 17px;
+  color: #5d9a27;
+  pointer-events: none;
+}
+
+.form-actions { display: flex; justify-content: flex-end; margin-top: 0.5rem; }
+
+.btn-continuer {
+  background: linear-gradient(135deg, #5d9a27, #4a7c20);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(74,124,32,0.3);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.btn-continuer:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(74,124,32,0.4); }
+.btn-continuer:active { transform: translateY(0); }
