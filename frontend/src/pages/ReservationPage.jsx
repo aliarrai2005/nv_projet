@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import PersonalInfoForm from '../components/PersonalInfoForm/PersonalInfoForm';
@@ -6,76 +6,52 @@ import { createReservation } from '../api/reservations.api';
 import './ReservationPage.css';
 
 const ReservationPage = () => {
-  const [isSidePanelMinimized, setIsSidePanelMinimized] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-
-  // Récupérer les données passées depuis DateHeure
   const { terrain, date, heureDebut, heureFin } = location.state || {};
+  const [loading, setLoading] = useState(false);
 
-  const handleContinue = (formData) => {
-    // Sauvegarder la réservation dans localStorage
-    if (terrain && date && heureDebut) {
-      createReservation({
+  const handleContinue = async (formData) => {
+    if (!terrain || !date || !heureDebut) {
+      alert('Données de réservation manquantes');
+      return;
+    }
+    setLoading(true);
+    try {
+      await createReservation({
         terrainId: String(terrain.id),
         terrainNom: terrain.nom,
         date,
         heureDebut,
         heureFin,
-        nomClient: formData.nom || '',
-        emailClient: formData.email || '',
-        telephone: formData.telephone || '',
+        nomClient: `${formData.firstName} ${formData.lastName}`,
+        emailClient: formData.email,
+        telephone: formData.phone,
       });
-    }
-    navigate('/payment', { state: { terrain, date, heureDebut, heureFin, ...formData } });
-  };
-
-  const handleBack = () => {
-    navigate('/date-heure', { state: { terrain } });
-  };
-
-  const handleClose = () => {
-    if (window.confirm('Voulez-vous vraiment annuler la réservation ?')) {
-      navigate('/');
+      navigate('/payment', { state: { terrain, date, heureDebut, heureFin, client: formData } });
+    } catch (err) {
+      console.error(err);
+      alert('Erreur lors de la création de la réservation');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div className="reservation-container">
-      <div className="bg-blur"></div>
-
-      {/* Résumé de la réservation */}
-      {terrain && date && heureDebut && (
-        <div style={{
-          position: 'fixed',
-          top: 16,
-          right: 16,
-          background: 'white',
-          border: '1px solid #e5e7eb',
-          borderRadius: 10,
-          padding: '12px 16px',
-          fontSize: 13,
-          zIndex: 1000,
-          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-          maxWidth: 260,
-        }}>
-          <div style={{ fontWeight: 700, marginBottom: 4, color: '#1e40af' }}>📋 Votre réservation</div>
+      {terrain && (
+        <div className="reservation-summary-fixed">
           <div>⚽ {terrain.nom}</div>
           <div>📅 {date}</div>
           <div>🕐 {heureDebut} — {heureFin}</div>
         </div>
       )}
-
-      <div className={`wrapper ${isSidePanelMinimized ? 'minimized' : ''}`}>
+      <div className="wrapper">
         <Sidebar etapeActive={3} />
-        <PersonalInfoForm
-          onContinue={handleContinue}
-          onBack={handleBack}
-          onClose={handleClose}
-        />
+        <PersonalInfoForm onContinue={handleContinue} onBack={() => navigate('/date-heure', { state: { terrain } })} onClose={() => navigate('/')} />
       </div>
+      {loading && <div className="loading-overlay">Création de la réservation...</div>}
     </div>
   );
 };
-
 export default ReservationPage;

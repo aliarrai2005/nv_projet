@@ -3,7 +3,7 @@ import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Cache } from 'cache-manager';
 import { OverpassService, TerrainDto } from '../overpass/overpass.service';
 
-const CACHE_TTL = 60 * 60 * 6; // 6 heures (données OSM peu volatiles)
+const CACHE_TTL = 60 * 60 * 6; // 6 heures
 
 @Injectable()
 export class StadesService {
@@ -14,13 +14,10 @@ export class StadesService {
 
   async getStadesParVille(ville: string): Promise<TerrainDto[]> {
     const cacheKey = `stades:${ville.toLowerCase()}`;
-
-    // Vérifier le cache d'abord
     const cached = await this.cacheManager.get<TerrainDto[]>(cacheKey);
     if (cached) return cached;
 
-    // Sinon appel Overpass
-    const stades = await this.overpassService.fetchStades(ville);
+    const stades = await this.overpassService.fetchStadesWithRetry(ville);
     await this.cacheManager.set(cacheKey, stades, CACHE_TTL);
     return stades;
   }

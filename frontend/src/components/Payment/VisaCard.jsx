@@ -1,6 +1,6 @@
 import React from 'react';
 
-const VisaCard = ({ paymentData, setPaymentData, onSubmit }) => {
+const VisaCard = ({ paymentData, setPaymentData, onSubmit, montant }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setPaymentData(prev => ({ ...prev, [name]: value }));
@@ -85,7 +85,9 @@ const VisaCard = ({ paymentData, setPaymentData, onSubmit }) => {
           </div>
         </div>
 
-        <button type="submit" className="pay-btn visa-btn">Payer 150.00 MAD</button>
+        <button type="submit" className="pay-btn visa-btn">
+          Payer {montant} MAD
+        </button>
 
         <div className="secure-row">
           <svg className="lock-icon" viewBox="0 0 16 16">

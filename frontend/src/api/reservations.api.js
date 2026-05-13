@@ -1,43 +1,29 @@
-const STORAGE_KEY = 'reservations_sportify';
+import api from './axiosConfig';
 
-// Récupérer toutes les réservations
-export const getAllReservations = () => {
-  const data = localStorage.getItem(STORAGE_KEY);
-  return data ? JSON.parse(data) : [];
+export const getCreneauxOccupes = async (terrainId, date) => {
+  const response = await api.get('/reservations/occupies', {
+    params: { terrainId, date }
+  });
+  return response.data;
 };
 
-// Créer une réservation
-export const createReservation = (data) => {
-  const reservations = getAllReservations();
-  const nouvelle = {
-    ...data,
-    id: Date.now().toString(),
-    statut: 'confirmée',
-    createdAt: new Date().toISOString(),
-  };
-  reservations.push(nouvelle);
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(reservations));
-  return nouvelle;
+export const createReservation = async (reservationData) => {
+  const response = await api.post('/reservations', reservationData);
+  return response.data;
 };
 
-// Récupérer les créneaux occupés pour un terrain + date
-export const getCreneauxOccupes = (terrainId, date) => {
-  const reservations = getAllReservations();
-  return reservations
-    .filter(
-      (r) =>
-        r.terrainId === String(terrainId) &&
-        r.date === date &&
-        r.statut !== 'annulée'
-    )
-    .map((r) => r.heureDebut); // ex: ["08:00", "14:00"]
+export const cancelReservation = async (id) => {
+  const response = await api.patch(`/reservations/${id}/cancel`);
+  return response.data;
 };
 
-// Annuler une réservation
-export const cancelReservation = (id) => {
-  const reservations = getAllReservations();
-  const updated = reservations.map((r) =>
-    r.id === id ? { ...r, statut: 'annulée' } : r
-  );
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+
+export const getAllReservations = async () => {
+  const response = await api.get('/reservations');
+  return response.data;
+};
+
+export const deleteReservation = async (id) => {
+  const response = await api.delete(`/reservations/${id}`);
+  return response.data;
 };

@@ -1,0 +1,127 @@
+.admin-container {
+  padding: 2rem;
+  background: #f0f9f0;
+  min-height: 100vh;
+  font-family: 'Segoe UI', system-ui;
+}
+.admin-tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #2e7d32;
+}
+.admin-tab {
+  background: none;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #2e7d32;
+  transition: 0.2s;
+}
+.admin-tab.active {
+  border-bottom: 3px solid #2e7d32;
+  color: #1b5e20;
+}
+.admin-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+.admin-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1b5e20;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.table-responsive {
+  overflow-x: auto;
+}
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+.admin-table th, .admin-table td {
+  border: 1px solid #c8e6c9;
+  padding: 10px 12px;
+  text-align: left;
+}
+.admin-table th {
+  background: #e8f5e9;
+  color: #1b5e20;
+  font-weight: 600;
+}
+.btn-sm {
+  padding: 4px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.8rem;
+  margin: 0 4px;
+}
+.btn-edit {
+  background: #ffc107;
+  color: #333;
+}
+.btn-delete {
+  background: #dc3545;
+  color: white;
+}
+.btn-primary {
+  background: #2e7d32;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.form-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+.form-grid input, .form-grid select {
+  padding: 8px 12px;
+  border: 1px solid #c8e6c9;
+  border-radius: 8px;
+  flex: 1 1 200px;
+}
+.ville-filter {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.overpass-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 1rem;
+}
+.overpass-item {
+  border: 1px solid #c8e6c9;
+  border-radius: 12px;
+  padding: 12px;
+  background: #fff;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.overpass-item.selected {
+  background: #e8f5e9;
+  border-color: #2e7d32;
+  box-shadow: 0 2px 8px rgba(46,125,50,0.2);
+}
+.import-form {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #f1f8e9;
+  border-radius: 12px;
+}

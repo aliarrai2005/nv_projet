@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import ReservationPage from './pages/ReservationPage'
 import PaymentSuccessPage from './pages/PaymentSuccessPage'
 import PaymentPage from './pages/PaymentPage'
+import AdminTerrains from './pages/AdminTerrains';
 
 
 
@@ -13,6 +14,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/admin" element={<AdminTerrains />} />
         <Route path="/selection-terrain" element={<SelectionTerrain />} />
         <Route path="/date-heure" element={<PageDateHeure />} />
         <Route path="/reservation" element={<ReservationPage />} />

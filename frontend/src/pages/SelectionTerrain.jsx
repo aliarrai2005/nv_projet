@@ -1,7 +1,6 @@
 import Sidebar from '../components/Sidebar'
-import SelectActivite from '../components/SelectActivite'
 import SelectActivite2 from '../components/SelectActivite2'
-import './SelectionTerrain.css' 
+import './SelectionTerrain.css'
 
 function SelectionTerrain() {
   return (

@@ -84,7 +84,7 @@
   font-size: 0.8rem;
   font-weight: 700;
   color: var(--dark-text);
-  margin-bottom: 0.35rem;
+  padding-bottom: 0.3rem;
   display: block;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -93,6 +93,7 @@
 /* Select wrapper */
 .select-wrapper {
   position: relative;
+  width: 30%;
 }
 
 .select-wrapper select {

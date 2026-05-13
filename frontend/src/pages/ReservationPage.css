@@ -20,7 +20,7 @@
 
 .reservation-container {
   font-family: 'Outfit', sans-serif;
-  background: var(--green-dark);
+  background: var(--white);
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -50,7 +50,8 @@
   border-radius: 16px;
   overflow: hidden;
   box-shadow: var(--shadow);
-  width: 780px;
+  width: 980px;
+  height: 640px;
   max-width: 98vw;
   animation: fadeUp .45s ease both;
 }

@@ -3,7 +3,7 @@ import VisaCard from './VisaCard';
 import MastercardCard from './MastercardCard';
 import CMIForm from './CMIForm';
 
-const PaymentForm = ({ paymentMethod, setPaymentMethod, paymentData, setPaymentData, onSubmit }) => {
+const PaymentForm = ({ paymentMethod, setPaymentMethod, paymentData, setPaymentData, onSubmit, montant }) => {
   const methods = [
     { id: 'visa', label: 'VISA' },
     { id: 'mastercard', label: 'Mastercard' },
@@ -11,31 +11,19 @@ const PaymentForm = ({ paymentMethod, setPaymentMethod, paymentData, setPaymentD
   ];
 
   const renderPaymentMethodContent = () => {
+    const commonProps = {
+      paymentData,
+      setPaymentData,
+      onSubmit,
+      montant
+    };
     switch (paymentMethod) {
       case 'visa':
-        return (
-          <VisaCard 
-            paymentData={paymentData}
-            setPaymentData={setPaymentData}
-            onSubmit={onSubmit}
-          />
-        );
+        return <VisaCard {...commonProps} />;
       case 'mastercard':
-        return (
-          <MastercardCard 
-            paymentData={paymentData}
-            setPaymentData={setPaymentData}
-            onSubmit={onSubmit}
-          />
-        );
+        return <MastercardCard {...commonProps} />;
       case 'cmi':
-        return (
-          <CMIForm 
-            paymentData={paymentData}
-            setPaymentData={setPaymentData}
-            onSubmit={onSubmit}
-          />
-        );
+        return <CMIForm {...commonProps} />;
       default:
         return null;
     }
@@ -54,7 +42,6 @@ const PaymentForm = ({ paymentMethod, setPaymentMethod, paymentData, setPaymentD
           </button>
         ))}
       </div>
-      
       {renderPaymentMethodContent()}
     </div>
   );

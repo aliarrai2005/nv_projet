@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MastercardCard = ({ paymentData, setPaymentData, onSubmit }) => {
+const MastercardCard = ({ paymentData, setPaymentData, onSubmit,montant  }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setPaymentData(prev => ({ ...prev, [name]: value }));
@@ -14,9 +14,9 @@ const MastercardCard = ({ paymentData, setPaymentData, onSubmit }) => {
         <div className="card-inner">
           <div className="card-row1">
             <svg className="chip-svg" viewBox="0 0 34 26">
-              <rect width="34" height="26" rx="4" fill="#EF9F27"/>
-              <rect x="3" y="9" width="28" height="8" rx="1" fill="#BA7517" opacity=".5"/>
-              <rect x="12" y="3" width="10" height="20" rx="1" fill="#BA7517" opacity=".5"/>
+              <rect width="34" height="26" rx="4" fill="#EF9F27" />
+              <rect x="3" y="9" width="28" height="8" rx="1" fill="#BA7517" opacity=".5" />
+              <rect x="12" y="3" width="10" height="20" rx="1" fill="#BA7517" opacity=".5" />
             </svg>
             <div className="mastercard-logo">
               <div className="mc-circle red"></div>
@@ -89,12 +89,14 @@ const MastercardCard = ({ paymentData, setPaymentData, onSubmit }) => {
           </div>
         </div>
 
-        <button type="submit" className="pay-btn mastercard-btn">Payer 150.00 MAD</button>
+        <button type="submit" className="pay-btn mastercard-btn">
+          Payer {montant} MAD
+        </button>
 
         <div className="secure-row">
           <svg className="lock-icon" viewBox="0 0 16 16">
-            <rect x="3" y="7" width="10" height="8" rx="2"/>
-            <path d="M5 7V5a3 3 0 0 1 6 0v2"/>
+            <rect x="3" y="7" width="10" height="8" rx="2" />
+            <path d="M5 7V5a3 3 0 0 1 6 0v2" />
           </svg>
           <span className="secure-text">Paiement 100% sécurisé — Mastercard SecureCode</span>
         </div>

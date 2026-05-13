@@ -1,7 +1,7 @@
 /* Dans le CSS parent (SelectionTerrain.css ou global) */
 .booking-wrapper {
-  width: 1400px;           /* Augmente de 1200px à 1400px */
-  max-width: 98vw;         /* ou 98vw pour presque toute la largeur de l'écran */
+  width: 400px;           /* Augmente de 1200px à 1400px */
+  min-width: 1300px;       /* Augmente de 1200px à 1400px */
   min-height: 600px;
   background: #fff;
   border-radius: 20px;

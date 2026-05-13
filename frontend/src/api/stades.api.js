@@ -12,3 +12,4 @@ export const getAllStades = () => api.get('/stades');
  * @param {string} ville - ex: "casablanca", "rabat", "marrakesh", "fes", "tanger"
  */
 export const getStadesByVille = (ville) => api.get(`/stades/${ville}`);
+    
