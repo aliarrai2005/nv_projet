@@ -2,6 +2,7 @@ import './SelectActivite2.css';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getAllTerrains } from '../api/terrains.api';
+import MapLink from '../components/MapLink';  // ← Ajout
 
 function SelectActivite2() {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ function SelectActivite2() {
     setLoading(true);
     getAllTerrains()
       .then((res) => {
-        // Ajouter un champ activite par défaut et formater
+        // Conserver toutes les propriétés (dont lat, lng)
         const terrainsList = res.data.map(t => ({
           ...t,
           activite: 'football',
@@ -52,9 +53,7 @@ function SelectActivite2() {
   const handleContinue = () => {
     if (selectedTerrain) {
       const terrainData = terrains.find((t) => t.id === selectedTerrain);
-      navigate('/date-heure', {
-        state: { terrain: terrainData },
-      });
+      navigate('/date-heure', { state: { terrain: terrainData } });
     }
   };
 
@@ -65,11 +64,7 @@ function SelectActivite2() {
         <div className="header-line"></div>
       </div>
 
-      {error && (
-        <div className="error-banner">
-          ⚠️ {error}
-        </div>
-      )}
+      {error && <div className="error-banner">⚠️ {error}</div>}
 
       <div className="filters-container">
         <div className="filter-group">
@@ -110,9 +105,7 @@ function SelectActivite2() {
                 <div className="terrain-image">
                   <img src={terrain.image} alt={terrain.nom} />
                   <div className="terrain-type-badge">{terrain.type}</div>
-                  {selectedTerrain === terrain.id && (
-                    <div className="selected-check">✓</div>
-                  )}
+                  {selectedTerrain === terrain.id && <div className="selected-check">✓</div>}
                 </div>
                 <div className="terrain-info">
                   <h3>{terrain.nom}</h3>
@@ -122,6 +115,12 @@ function SelectActivite2() {
                     <span>👥 {terrain.capacity}</span>
                     {terrain.surface && <span>🌿 {terrain.surface}</span>}
                   </div>
+                  {/* Intégration du lien Google Maps */}
+                  {terrain.lat && terrain.lng && (
+                    <div style={{ marginTop: '8px' }}>
+                      <MapLink lat={terrain.lat} lng={terrain.lng} text="📍 Voir l'emplacement" />
+                    </div>
+                  )}
                 </div>
               </div>
             ))

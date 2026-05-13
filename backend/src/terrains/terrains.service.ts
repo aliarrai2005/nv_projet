@@ -11,6 +11,8 @@ export interface Terrain {
   capacity: string;
   surface?: string;
   image?: string;
+  lat?: number;
+  lng?: number;
 }
 
 @Injectable()
@@ -43,9 +45,11 @@ export class TerrainsService {
   }
 
   async create(data: Omit<Terrain, 'id'>): Promise<Terrain> {
+    console.log('Creating terrain with data:', data);
     const terrains = await this.readTerrains();
     const newId = terrains.length ? Math.max(...terrains.map(t => t.id)) + 1 : 1;
     const newTerrain = { id: newId, ...data };
+    console.log('Creating terrain:', newTerrain);
     terrains.push(newTerrain);
     await this.writeTerrains(terrains);
     return newTerrain;

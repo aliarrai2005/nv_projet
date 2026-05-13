@@ -125,3 +125,20 @@
   background: #f1f8e9;
   border-radius: 12px;
 }
+
+.map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: #2e7d32;
+  text-decoration: none;
+  background: #e8f5e9;
+  padding: 4px 8px;
+  border-radius: 20px;
+  transition: 0.2s;
+}
+.map-link:hover {
+  background: #c8e6c9;
+  color: #1b5e20;
+}
