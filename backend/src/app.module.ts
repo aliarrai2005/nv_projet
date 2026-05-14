@@ -3,6 +3,7 @@ import { CacheModule } from '@nestjs/cache-manager';
 import { StadesModule } from './stades/stades.module';
 import { TerrainsModule } from './terrains/terrains.module';
 import { ReservationsModule } from './reservations/reservations.module';
+import { AdminModule } from './admin/admin.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { ReservationsModule } from './reservations/reservations.module';
     StadesModule,
     TerrainsModule,
     ReservationsModule,
+    AdminModule,
   ],
 })
 export class AppModule {}
