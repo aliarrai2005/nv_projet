@@ -1,0 +1,56 @@
+/* ═══════════════════════════════════════════════
+   DESIGN SYSTEM — Espaces Sportifs Préfecture
+   Palette: Dark Forest × Lime × Cream
+   Fonts: Playfair Display + DM Sans
+═══════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+
+:root {
+  /* ── Core Palette ── */
+  --forest-950: #040a04;
+  --forest-900: #0a120a;
+  --forest-800: #0d1a0d;
+  --forest-700: #132213;
+  --forest-600: #1a3a1a;
+  --forest-500: #2d6a2d;
+  --forest-400: #3a8a3a;
+  --forest-300: #4caf50;
+
+  --lime-500: #a3d648;
+  --lime-400: #b8e05e;
+  --lime-300: #d4f06e;
+  --lime-600: #7dc832;
+
+  --cream-100: #f0f4e8;
+  --cream-200: #e0e8c8;
+  --cream-muted: rgba(200, 220, 160, 0.6);
+
+  --white: #ffffff;
+  --glass-white: rgba(255, 255, 255, 0.06);
+  --glass-border: rgba(130, 200, 60, 0.18);
+  --glass-border-strong: rgba(130, 200, 60, 0.35);
+
+  /* ── Typography ── */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', 'Segoe UI', sans-serif;
+  --font-mono: 'DM Mono', 'Courier New', monospace;
+
+  /* ── Shadows ── */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 20px 48px rgba(0, 0, 0, 0.45);
+  --shadow-lime: 0 8px 32px rgba(100, 190, 40, 0.25);
+  --shadow-lime-lg: 0 14px 42px rgba(100, 190, 40, 0.4);
+
+  /* ── Radius ── */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  /* ── Transitions ── */
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.15s ease;
+}
