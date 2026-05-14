@@ -1,192 +1,102 @@
-body{
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    background-image: url('23964.jpg'); /* The path to your image */
-    background-size: cover;                /* Scale image to fill the screen */
-    background-position: center;           /* Keep the image centered */
-    background-repeat: no-repeat;          /* Don't tile the image */
-    background-attachment: fixed;
-    overflow: scroll;
-    color: aliceblue; 
-    margin: 0;
-    left: 0; 
-}
-/*overall positioning and coloring */
-.header-section{
-    position: fixed;
-    width: 100%;
-    background-color: rgb(106, 180, 31);
-    height: 5rem;
-    left: 0%;
-    text-align: center;
-    align-items: center;
-    justify-content:space-evenly;
-    display: flex;
-    color: aliceblue;
-}
-.main-title h1 {
-  margin-bottom: 10px;
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+/* ⚠️ Aucun style body/html ici — pour ne pas affecter les autres pages */
+
+/* ── NAVBAR ─────────────────────────────────────── */
+.header-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  height: 72px;
+  background: rgba(10, 25, 10, 0.80);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(130, 200, 60, 0.18);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
 }
 
-.main-title h5 {
-  margin-top: 0;
-  color: gray;
-}
-.main-title{
-    height: 50%;
-    width: 80%;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-}
-#reservation-button{
-    height: 5rem;
-    width: 13rem;
-    background-color: yellow;
-    border-radius: 10px;
-}
-#reservation-button a{
-    color: black;
-    font-weight: bold;
-    border-color: none;
-}
-.reservation-button{
-   height: 50%;
-    width: 80%;
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: center; 
-}
-/* 
-the part in the left section of the header
-*/
-.header-section-left-part{
-    width: 40%;
-    text-align: center;
-}
-/* 
-the part in the right section of the header
-*/
-.header-section-right-part{
-    color: aliceblue;
-    width: 60%;
-    text-align: center;
-    display: flex;
-    height: 100%;
-    justify-content: space-evenly;
-    align-items: center;
-}
-/*
-hyperlink's style
-*/
-a{
-    text-decoration: none;
-    color: aliceblue;
-    font-weight: bold;
-}
-/*
-transition decoration
-*/
-a:hover{
-    transform: scale(1.0001);
-    color: yellow;
-    transition: 0.5s;
-
-}
-a:not(:hover){
-    transition: 500ms;
-}
-footer{
-    position:fixed;
-    bottom: 0;
-}
-.footer-section{
-    background-color: rgb(51, 16, 16);
-    height: 5rem;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    left: 0;
-}
-img{
-    justify-self: center;
-    justify-content: center;
-    align-items: center;
-    margin-left: 50%;
-    margin-bottom: 80%;
-}
-main{
-    height :40rem;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 20px;
-    border-style: none;
-}
-#slider {
-  transition: opacity 0.5s;
-}
-.paying-form{
-    display: flexbox;
-    background-color: aliceblue;
-    height: 60%;
-    width: 60%;
-    justify-self: center;
-    color: black;
-    justify-content: center;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 8px;
-    
-}
-.paying-form-first-row{
-    height: 20%;
-    width: 100%;
-        align-items: center;
-        display: flex;
-        justify-content: space-evenly;
-}
-.paying-form-second-row{
-    height: 20%;
-    width: 100%;
-        align-items: center;
-        display: flex;
-        justify-content: space-evenly;
-}
-.headline{
-    display: flex;
-    justify-content: center;
+.header-section-left-part {
+  display: flex;
+  align-items: center;
 }
 
-.paying-form input{
-    width: 30%;
-    height: 20%;
+.header-section-left-part h5 {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: #b8d87a;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
 }
-.footer{
-    justify-content: space-evenly;
-    background-color: beige;
-    width: 100%;
-    height: 20%;
-    display: inline-flex;
-    color: black;
+
+.header-section-left-part h5::before {
+  content: '⚽';
+  margin-right: 8px;
+  font-size: 1.05rem;
 }
-.confirm-button{
-    color: aliceblue;
-    background-color: rgb(111, 170, 10);
-    justify-content: center;
-    justify-self: center;
-    align-items: first baseline;
-    width: 90%;
-    height: 10%;
-    text-align: center;
-    border-radius: 8px;
-    margin-left: 5%;
+
+.header-section-right-part {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
-.confirm-button:hover{
-    color: yellow;
+
+.header-section-right-part a {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.87rem;
+  color: rgba(240, 244, 232, 0.82);
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  letter-spacing: 0.02em;
+  transition: all 0.25s ease;
+  position: relative;
 }
-a div{
-justify-self: center;
+
+.header-section-right-part a::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: #a3d648;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.header-section-right-part a:hover {
+  color: #d4f06e;
+  background: rgba(130, 200, 60, 0.1);
+}
+
+.header-section-right-part a:hover::after {
+  width: 55%;
+}
+
+/* ── FOOTER ─────────────────────────────────────── */
+.footer-section {
+  background: linear-gradient(135deg, #0a120a 0%, #111a0d 100%);
+  border-top: 1px solid rgba(130, 200, 60, 0.15);
+  padding: 28px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.footer-left-section {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  color: rgba(180, 210, 120, 0.65);
+  letter-spacing: 0.01em;
+  line-height: 1.5;
 }

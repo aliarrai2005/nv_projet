@@ -45,7 +45,6 @@ export class TerrainsService {
   }
 
   async create(data: Omit<Terrain, 'id'>): Promise<Terrain> {
-    console.log('Creating terrain with data:', data);
     const terrains = await this.readTerrains();
     const newId = terrains.length ? Math.max(...terrains.map(t => t.id)) + 1 : 1;
     const newTerrain = { id: newId, ...data };

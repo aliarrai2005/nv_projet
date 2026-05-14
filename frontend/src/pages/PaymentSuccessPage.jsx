@@ -29,7 +29,6 @@ const PaymentSuccessPage = () => {
   const timeline = [
     { title: 'Réservation créée', time: now.toLocaleString('fr-FR'), status: 'done' },
     { title: 'Paiement validé', time: now.toLocaleString('fr-FR'), status: 'done' },
-    { title: 'Confirmation email', time: 'En attente d\'envoi', status: 'pending' },
     { title: 'Accès au terrain', time: heureDebut || '--:--', status: 'pending' }
   ];
 

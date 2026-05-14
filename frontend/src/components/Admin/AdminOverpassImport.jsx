@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { getAllStades, getStadesByVille } from '../../api/stades.api';
 import { createTerrain } from '../../api/terrains.api';
+import MapLink from '../MapLink';
 
 const villesDisponibles = [
     { value: 'casablanca', label: 'Casablanca' },
@@ -34,7 +35,6 @@ const AdminOverpassImport = ({ onImport }) => {
     };
 
     const handleSelectStade = (stade) => {
-        console.log('Stade sélectionné:', stade);
         setSelectedStade(stade);
         setEditable({
             nom: stade.nom || '',
@@ -47,81 +47,77 @@ const AdminOverpassImport = ({ onImport }) => {
         setEditMode(true);
     };
 
+
+    // Dans la fonction handleImport, ajouter lat t lng
     const handleImport = async () => {
-        console.log('Données avant import:', editable);
         if (!editable.nom || !editable.ville) {
             alert('Nom et ville requis');
             return;
         }
-        // Dans la fonction handleImport, ajouter lat et lng
-        const handleImport = async () => {
-            if (!editable.nom || !editable.ville) {
-                alert('Nom et ville requis');
-                return;
-            }
-            const newTerrain = {
-                nom: editable.nom,
-                type: 'Football',
-                ville: editable.ville,
-                prix: '200 MAD/h',
-                capacity: '22 joueurs',
-                surface: editable.surface,
-                image: editable.image || 'https://images.unsplash.com/photo-1459865264687-287d4539c1ac?w=400&h=250&fit=crop',
-                lat: editable.lat,   // ← Ajout
-                lng: editable.lng,   // ← Ajout
-            };
-            console.log('Nouveau terrain à créer:', newTerrain);
-            await createTerrain(newTerrain);
-            alert('Terrain ajouté avec succès');
-            setSelectedStade(null);
-            setEditMode(false);
-            if (onImport) onImport();
+        const newTerrain = {
+            nom: editable.nom,
+            type: 'Football',
+            ville: editable.ville,
+            prix: editable.prix + ' MAD/h' || '200 MAD/h',
+            capacity: editable.capacity + ' joueurs' || '22 joueurs',
+            surface: editable.surface,
+            image: editable.image || 'https://images.unsplash.com/photo-1459865264687-287d4539c1ac?w=400&h=250&fit=crop',
+            lat: editable?.lat,   // ← Ajout
+            lng: editable?.lng,   // ← Ajout
         };
+        await createTerrain(newTerrain);
+        alert('Terrain ajouté avec succès');
+        setSelectedStade(null);
+        setEditMode(false);
+        if (onImport) onImport();
     };
 
 
-        return (
-            <div className="admin-card">
-                <div className="admin-title">🌍 Importer depuis OpenStreetMap (Overpass)</div>
-                <div className="ville-filter">
-                    <label>Ville : </label>
-                    <select value={selectedVille} onChange={(e) => setSelectedVille(e.target.value)}>
-                        {villesDisponibles.map(v => <option key={v.value} value={v.value}>{v.label}</option>)}
-                    </select>
-                    <button className="btn-primary" onClick={fetchStades} disabled={loading}>Charger les stades</button>
-                </div>
-
-                {loading && <p>Chargement...</p>}
-
-                {stades.length > 0 && !editMode && (
-                    <div>
-                        <p>{stades.length} stades trouvés. Cliquez sur un pour l'importer et modifier les infos.</p>
-                        <div className="overpass-results">
-                            {stades.map((s, idx) => (
-                                <div key={idx} className="overpass-item" onClick={() => handleSelectStade(s)}>
-                                    <strong>{s.nom || 'Sans nom'}</strong>
-                                    <div>{s.surface || 'Surface inconnue'}</div>
-                                    <div>{s.lat?.toFixed(4)}, {s.lon?.toFixed(4)}</div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                )}
-
-                {editMode && selectedStade && (
-                    <div className="import-form">
-                        <h4>Prévisualisation avant ajout</h4>
-                        <div className="form-grid">
-                            <input value={editable.nom} onChange={e => setEditable({ ...editable, nom: e.target.value })} placeholder="Nom du terrain" />
-                            <input value={editable.ville} onChange={e => setEditable({ ...editable, ville: e.target.value })} placeholder="Ville" />
-                            <input value={editable.surface} onChange={e => setEditable({ ...editable, surface: e.target.value })} placeholder="Surface" />
-                            <input value={editable.image} onChange={e => setEditable({ ...editable, image: e.target.value })} placeholder="URL image" />
-                        </div>
-                        <button  onClick={handleImport}>➕ Ajouter ce terrain</button>
-                        <button className="btn-sm" onClick={() => { setEditMode(false); setSelectedStade(null); }}>Annuler</button>
-                    </div>
-                )}
+    return (
+        <div className="admin-card">
+            <div className="admin-title">🌍 Importer depuis OpenStreetMap (Overpass)</div>
+            <div className="ville-filter">
+                <label>Ville : </label>
+                <select value={selectedVille} onChange={(e) => setSelectedVille(e.target.value)}>
+                    {villesDisponibles.map(v => <option key={v.value} value={v.value}>{v.label}</option>)}
+                </select>
+                <button className="btn-primary" onClick={fetchStades} disabled={loading}>Charger les stades</button>
             </div>
-        );
-    };
-    export default AdminOverpassImport;
+
+            {loading && <p>Chargement...</p>}
+
+            {stades.length > 0 && !editMode && (
+                <div>
+                    <p>{stades.length} stades trouvés. Cliquez sur un pour l'importer et modifier les infos.</p>
+                    <div className="overpass-results">
+                        {stades.map((s, idx) => (
+                            <div key={idx} className="overpass-item" onClick={() => handleSelectStade(s)}>
+                                <strong>{s.nom || 'Sans nom'}</strong>
+                                <div>{s.surface || 'Surface inconnue'}</div>
+                                <div>{s.lat?.toFixed(4)}, {s.lon?.toFixed(4)}</div>
+                                <div><MapLink lat={s.lat} lng={s.lon} text="📍 Voir l'emplacement" /></div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            {editMode && selectedStade && (
+                <div className="import-form">
+                    <h4>Prévisualisation avant ajout</h4>
+                    <div className="form-grid">
+                        <input value={editable.nom} onChange={e => setEditable({ ...editable, nom: e.target.value })} placeholder="Nom du terrain" />
+                        <input value={editable.ville} onChange={e => setEditable({ ...editable, ville: e.target.value })} placeholder="Ville" />
+                        <input value={editable.surface} onChange={e => setEditable({ ...editable, surface: e.target.value })} placeholder="Surface" />
+                        <input placeholder="Prix (ex: 250 MAD/h)" value={editable.prix} onChange={e => setEditable({ ...editable, prix: e.target.value })} />
+                        <input placeholder="Capacité" value={editable.capacity} onChange={e => setEditable({ ...editable, capacity: e.target.value })} />
+                        <input value={editable.image} onChange={e => setEditable({ ...editable, image: e.target.value })} placeholder="URL image" />
+                    </div>
+                    <button className="btn-primary" onClick={() => { console.log('Importation du terrain'); handleImport() }} >➕ Ajouter ce terrain</button>
+                    <button className="btn-sm" onClick={() => { setEditMode(false); setSelectedStade(null); }}>Annuler</button>
+                </div>
+            )}
+        </div>
+    );
+};
+export default AdminOverpassImport;

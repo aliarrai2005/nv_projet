@@ -1,6 +1,8 @@
 import React from 'react';
+import { useMaskedCard } from '../../hooks/useMaskedCard';
 
 const MastercardCard = ({ paymentData, setPaymentData, onSubmit,montant  }) => {
+  const { displayValue, onFocus, onBlur, onChange } = useMaskedCard(paymentData.cardNumber);
   const handleChange = (e) => {
     const { name, value } = e.target;
     setPaymentData(prev => ({ ...prev, [name]: value }));
@@ -23,7 +25,7 @@ const MastercardCard = ({ paymentData, setPaymentData, onSubmit,montant  }) => {
               <div className="mc-circle orange"></div>
             </div>
           </div>
-          <div className="card-number">{paymentData.cardNumber || '5412  ****  ****  3290'}</div>
+          <div className="card-number">{displayValue}</div>
           <div className="card-bottom">
             <div>
               <div className="card-label">Titulaire</div>
@@ -46,9 +48,16 @@ const MastercardCard = ({ paymentData, setPaymentData, onSubmit,montant  }) => {
             name="cardNumber"
             className="form-input"
             placeholder="0000  0000  0000  0000"
-            value={paymentData.cardNumber}
-            onChange={handleChange}
+            maxLength="19"
+            value={displayValue}
+            onFocus={onFocus}
+            onBlur={onBlur}
+            onChange={(e) => {
+              const digits = onChange(e);
+              setPaymentData(prev => ({ ...prev, cardNumber: digits }));
+            }}
             style={{ fontFamily: 'monospace', letterSpacing: '3px' }}
+            required
           />
         </div>
 
@@ -72,6 +81,7 @@ const MastercardCard = ({ paymentData, setPaymentData, onSubmit,montant  }) => {
               name="expiryDate"
               className="form-input"
               placeholder="MM / AA"
+              maxLength="7"
               value={paymentData.expiryDate}
               onChange={handleChange}
             />
@@ -82,9 +92,11 @@ const MastercardCard = ({ paymentData, setPaymentData, onSubmit,montant  }) => {
               type="password"
               name="cvv"
               className="form-input"
-              placeholder="• • •"
+              placeholder="• • • •"
+              maxLength="4"
               value={paymentData.cvv}
               onChange={handleChange}
+              required
             />
           </div>
         </div>

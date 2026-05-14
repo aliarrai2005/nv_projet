@@ -1,20 +1,14 @@
 import "./Navbar.css";
 
-export default function Navbar() {
+export default function Footer() {
   return (
-  <header className="header-section w-full" style={{width:"100%"}}>
-		<div className="header-section-left-part">
-		<h5>
-			Site de réservation des terrains de football
-		</h5>
-		</div>
-		<div className="header-section-right-part">
-			<a href="">Accueil</a>
-			<a href="">À propos</a>
-			<a href="">Nos activités</a>
-			<a href="">Mes réservations</a>
-			<a href="">Contact</a>
-		</div>
-	</header>
+    <footer className="footer-section" style={{ width: '100%' }}>
+      <div className="footer-left-section">
+        Rejoignez-nous dans notre mission de cultiver le bien-être physique et le plaisir à travers le sport et les loisirs !&nbsp;&copy;
+      </div>
+      <div style={{ fontSize: '0.82rem', color: 'rgba(163, 214, 72, 0.4)', letterSpacing: '0.05em' }}>
+        2026 — Préfecture des arrondissements
+      </div>
+    </footer>
   );
 }

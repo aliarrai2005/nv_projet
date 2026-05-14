@@ -2,7 +2,7 @@ import './SelectActivite2.css';
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getAllTerrains } from '../api/terrains.api';
-import MapLink from '../components/MapLink';  // ← Ajout
+import MapLink from '../components/MapLink'; 
 
 function SelectActivite2() {
   const navigate = useNavigate();

@@ -8,6 +8,9 @@ export default defineConfig({
   server: {
     port: 5173,
     proxy: {
+      watch: {
+        usePolling: true,
+      },
       '/api': {
         target: 'http://localhost:3001',
         changeOrigin: true,
