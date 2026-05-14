@@ -88,14 +88,14 @@ const AdminOverpassImport = ({ onImport }) => {
 
             {stades.length > 0 && !editMode && (
                 <div>
-                    <p>{stades.length} stades trouvés. Cliquez sur un pour l'importer et modifier les infos.</p>
+                    <p style={{ color: 'rgba(163, 214, 72, 0.8)' }}><i className="fas fa-info-circle"></i> {stades.length} stades trouvés. Cliquez sur un pour l'importer et modifier les infos.</p>
                     <div className="overpass-results">
                         {stades.map((s, idx) => (
                             <div key={idx} className="overpass-item" onClick={() => handleSelectStade(s)}>
-                                <strong>{s.nom || 'Sans nom'}</strong>
-                                <div>{s.surface || 'Surface inconnue'}</div>
-                                <div>{s.lat?.toFixed(4)}, {s.lon?.toFixed(4)}</div>
-                                <div><MapLink lat={s.lat} lng={s.lon} text="📍 Voir l'emplacement" /></div>
+                                <strong><i className="fas fa-futbol"></i> {s.nom || 'Sans nom'}</strong>
+                                <div><i className="fas fa-globe-africa"></i> {s.surface || 'Surface inconnue'}</div>
+                                <div><i className="fas fa-map-marker-alt"></i> {s.lat?.toFixed(4)}, {s.lon?.toFixed(4)}</div>
+                                <div><i className="fas fa-map"></i><MapLink lat={s.lat} lng={s.lon} text=" Voir l'emplacement" /></div>
                             </div>
                         ))}
                     </div>
@@ -113,8 +113,8 @@ const AdminOverpassImport = ({ onImport }) => {
                         <input placeholder="Capacité" value={editable.capacity} onChange={e => setEditable({ ...editable, capacity: e.target.value })} />
                         <input value={editable.image} onChange={e => setEditable({ ...editable, image: e.target.value })} placeholder="URL image" />
                     </div>
-                    <button className="btn-primary" onClick={() => { console.log('Importation du terrain'); handleImport() }} >➕ Ajouter ce terrain</button>
-                    <button className="btn-sm" onClick={() => { setEditMode(false); setSelectedStade(null); }}>Annuler</button>
+                    <button className="btn-primary" onClick={() => { console.log('Importation du terrain'); handleImport() }} ><i className="fas fa-plus"></i> Ajouter ce terrain</button>
+                    <button className="btn-sm" onClick={() => { setEditMode(false); setSelectedStade(null); }}> <i className="fas fa-times"></i> Annuler</button>
                 </div>
             )}
         </div>

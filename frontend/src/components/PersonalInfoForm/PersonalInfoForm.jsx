@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 const PersonalInfoForm = ({ onContinue, onBack, onClose }) => {
+  
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',

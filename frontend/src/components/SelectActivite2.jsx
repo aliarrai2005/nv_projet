@@ -85,7 +85,7 @@ function SelectActivite2() {
             <span className="stats-badge">Chargement...</span>
           ) : (
             <span className="stats-badge">
-              {filteredTerrains.length} terrain{filteredTerrains.length > 1 ? 's' : ''} disponible{filteredTerrains.length > 1 ? 's' : ''}
+              {filteredTerrains.length} terrains disponible
             </span>
           )}
         </div>
@@ -108,16 +108,17 @@ function SelectActivite2() {
                   {selectedTerrain === terrain.id && <div className="selected-check">✓</div>}
                 </div>
                 <div className="terrain-info">
-                  <h3>{terrain.nom}</h3>
+                  <h3> <i className="fas fa-futbol"></i> {terrain.nom}</h3>
                   <div className="terrain-details">
-                    <span> {terrain.ville}</span>
-                    <span> {terrain.prix}</span>
-                    <span> {terrain.capacity}</span>
-                    {terrain.surface && <span> {terrain.surface}</span>}
+                    <span><i className="fas fa-map-marker-alt"></i> {terrain.ville}</span>
+                    <span><i className="fas fa-tag"></i> {terrain.prix}</span>
+                    <span><i className="fas fa-users"></i> {terrain.capacity}</span>
+                    {terrain.surface && <span><i className="fas fa-grass"></i> {terrain.surface}</span>}
                   </div>
                   {/* Intégration du lien Google Maps */}
                   {terrain.lat && terrain.lng && (
                     <div style={{ marginTop: '8px' }}>
+                      <i className="fas fa-map"></i>
                       <MapLink lat={terrain.lat} lng={terrain.lng} text=" Voir l'emplacement" />
                     </div>
                   )}

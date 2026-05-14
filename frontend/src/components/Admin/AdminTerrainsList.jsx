@@ -64,7 +64,9 @@ const AdminTerrainsList = ({ refreshTrigger, onRefresh }) => {
           className="btn-primary"
           onClick={() => { resetForm(); setShowForm(!showForm); }}
         >
-          {showForm ? '✕ Annuler' : '+ Ajouter un terrain'}
+            {showForm ? <i className="fas fa-times"></i>  : <i className="fas fa-plus"></i>}
+            {showForm ?  'Annuler' : 'Ajouter un terrain'}
+          
         </button>
       </div>
 
@@ -86,7 +88,8 @@ const AdminTerrainsList = ({ refreshTrigger, onRefresh }) => {
             letterSpacing: '0.08em',
             marginBottom: '1rem'
           }}>
-            {editingId ? '✏️ Modifier le terrain' : '➕ Nouveau terrain'}
+            {editingId ? <i className="fas fa-edit"></i> : <i className="fas fa-plus"></i> }
+            {editingId ? 'Modifier le terrain' : 'Ajouter un terrain'}
           </div>
           <form onSubmit={handleSubmit} className="form-grid">
             <input placeholder="Nom du terrain" value={form.nom} onChange={e => setForm({ ...form, nom: e.target.value })} required />
@@ -104,11 +107,13 @@ const AdminTerrainsList = ({ refreshTrigger, onRefresh }) => {
             </select>
             <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
               <button type="submit" className="btn-primary" style={{ flex: 1 }}>
-                {editingId ? '💾 Enregistrer' : '➕ Ajouter'}
+
+                {editingId ? <i className="fas fa-save"></i> : <i className="fas fa-plus"></i> }
+                {editingId ? ' Enregistrer' : ' Ajouter'}
               </button>
               {editingId && (
                 <button type="button" className="btn-sm" onClick={resetForm}>
-                  Annuler
+                  <i className="fas fa-times"></i> Annuler
                 </button>
               )}
             </div>
@@ -135,35 +140,35 @@ const AdminTerrainsList = ({ refreshTrigger, onRefresh }) => {
 
             <div className="terrain-admin-meta">
               <div className="terrain-admin-meta-row">
-                <span className="terrain-admin-meta-label">Ville</span>
-                <span className="terrain-admin-meta-value">📍 {t.ville}</span>
+                <span className="terrain-admin-meta-label"><i className="fas fa-map-marker-alt"></i> Ville :</span>
+                <span className="terrain-admin-meta-value"> {t.ville}</span>
               </div>
               <div className="terrain-admin-meta-row">
-                <span className="terrain-admin-meta-label">Prix</span>
-                <span className="terrain-admin-meta-value">⏱️ {t.prix || '—'}</span>
+                <span className="terrain-admin-meta-label"><i className="fas fa-tag"></i> Prix :</span>
+                <span className="terrain-admin-meta-value">{t.prix || '—'}</span>
               </div>
               <div className="terrain-admin-meta-row">
-                <span className="terrain-admin-meta-label">Surface</span>
-                <span className="terrain-admin-meta-value">🌿 {t.surface || '—'}</span>
+                <span className="terrain-admin-meta-label"><i className="fas fa-ruler-combined"></i> Surf :</span>
+                <span className="terrain-admin-meta-value"> {t.surface || '—'}</span>
               </div>
               <div className="terrain-admin-meta-row">
-                <span className="terrain-admin-meta-label">Capacité</span>
-                <span className="terrain-admin-meta-value">👥 {t.capacity || '—'}</span>
+                <span className="terrain-admin-meta-label"><i className="fas fa-users"></i> Capac :</span>
+                <span className="terrain-admin-meta-value"> {t.capacity || '—'}</span>
               </div>
               {t.lat && t.lng && (
                 <div className="terrain-admin-meta-row">
-                  <span className="terrain-admin-meta-label">Carte</span>
-                  <MapLink lat={t.lat} lng={t.lng} text="📍 Voir" />
+                  <span className="terrain-admin-meta-label"><i className="fas fa-map"></i> Carte :</span>
+                  <MapLink lat={t.lat} lng={t.lng} text=" Voir" />
                 </div>
               )}
             </div>
 
             <div className="terrain-admin-actions">
               <button className="terrain-action-btn terrain-action-edit" onClick={() => handleEdit(t)}>
-                ✏️ Modifier
+                <i className="fas fa-edit"></i> Modifier
               </button>
               <button className="terrain-action-btn terrain-action-delete" onClick={() => handleDelete(t.id)}>
-                🗑️ Supprimer
+                <i className="fas fa-trash-alt"></i> Supprimer
               </button>
             </div>
           </div>

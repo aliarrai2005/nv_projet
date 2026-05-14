@@ -160,16 +160,16 @@
   font-family: 'DM Sans', sans-serif;
   font-size: 0.88rem;
   font-weight: 500;
-  color: #f0f7e4;
+  color: #676864;
   background: rgba(255, 255, 255, 0.05);
   transition: all 0.2s ease;
   outline: none;
 }
 
-.form-grid input::placeholder { color: #4a6840; }
+.form-grid input::placeholder { color: #676864; }
 
 .form-grid select option {
-  background: #1a2b1a;
+  background: #676864;
   color: #f0f7e4;
 }
 

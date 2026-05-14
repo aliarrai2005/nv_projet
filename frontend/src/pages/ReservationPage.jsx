@@ -5,6 +5,7 @@ import PersonalInfoForm from '../components/PersonalInfoForm/PersonalInfoForm';
 import { createReservation } from '../api/reservations.api';
 import './ReservationPage.css';
 
+
 const ReservationPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -12,6 +13,7 @@ const ReservationPage = () => {
   const [loading, setLoading] = useState(false);
 
   const handleContinue = async (formData) => {
+    
     if (!terrain || !date || !heureDebut) {
       alert('Données de réservation manquantes');
       return;

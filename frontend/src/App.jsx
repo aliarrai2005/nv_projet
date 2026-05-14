@@ -8,7 +8,7 @@ import PaymentPage from './pages/PaymentPage'
 import AdminTerrains from './pages/AdminTerrains';
 import AdminLogin from './pages/AdminLogin';
 
-// Composant de protection
+
 const PrivateRoute = ({ children }) => {
   const isAdmin = localStorage.getItem('adminToken') === 'true';
   return isAdmin ? children : <Navigate to="/admin-login" />;

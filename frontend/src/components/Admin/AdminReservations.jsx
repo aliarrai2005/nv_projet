@@ -57,22 +57,23 @@ const AdminReservations = () => {
                 <div className="reservation-card-id">Réf. #{r.id}</div>
               </div>
               <span className={`reservation-status-badge ${r.statut === 'annulée' ? 'status-cancelled' : 'status-active'}`}>
-                {r.statut === 'annulée' ? '✕ Annulée' : '✓ Active'}
+                {r.statut === 'annulée' ? <i className="fas fa-times"></i>  : <i className="fas fa-check"></i>}
+                {r.statut === 'annulée' ? ' Annulée' : ' Active'}
               </span>
             </div>
 
             <div className="reservation-card-body">
               <div className="reservation-detail">
                 <span className="reservation-detail-label">Date</span>
-                <span className="reservation-detail-value">📅 {formatDate(r.date)}</span>
+                <span className="reservation-detail-value"><i className="fas fa-calendar"></i> {formatDate(r.date)}</span>
               </div>
               <div className="reservation-detail">
                 <span className="reservation-detail-label">Horaire</span>
-                <span className="reservation-detail-value">🕐 {r.heureDebut} – {r.heureFin}</span>
+                <span className="reservation-detail-value"><i className="fas fa-clock"></i> {r.heureDebut} – {r.heureFin}</span>
               </div>
               <div className="reservation-detail">
                 <span className="reservation-detail-label">Client</span>
-                <span className="reservation-detail-value">👤 {r.nomClient || '—'}</span>
+                <span className="reservation-detail-value"><i className="fas fa-user"></i> {r.nomClient || '—'}</span>
               </div>
               <div className="reservation-detail">
                 <span className="reservation-detail-label">Statut</span>
@@ -86,14 +87,14 @@ const AdminReservations = () => {
                   className="terrain-action-btn terrain-action-edit"
                   onClick={() => handleCancel(r.id)}
                 >
-                  ✕ Annuler
+                  <i className="fas fa-times"></i> Annuler
                 </button>
               )}
               <button
                 className="terrain-action-btn terrain-action-delete"
                 onClick={() => handleDelete(r.id)}
               >
-                🗑️ Supprimer
+                <i className="fas fa-trash"></i> Supprimer
               </button>
             </div>
           </div>

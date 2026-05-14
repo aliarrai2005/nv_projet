@@ -31,8 +31,8 @@ export class OverpassService implements OnModuleInit {
     casablanca: { name: 'Casablanca', bbox: '33.4,-7.8,33.7,-7.4' },
     rabat:      { name: 'Rabat',      bbox: '33.9,-6.9,34.1,-6.7' },
     fes:        { name: 'Fès',        bbox: '33.9,-5.1,34.1,-4.9' },
-    //marrakesh:  { name: 'Marrakesh',  bbox: '31.5,-8.1,31.7,-7.9' },
-    //tanger:     { name: 'Tanger',     bbox: '35.6,-5.9,35.8,-5.7' },
+    marrakesh:  { name: 'Marrakesh',  bbox: '31.5,-8.1,31.7,-7.9' },
+    tanger:     { name: 'Tanger',     bbox: '35.6,-5.9,35.8,-5.7' },
   };
 
   onModuleInit() {
