@@ -1,0 +1,899 @@
+/* ============================================================
+   GLOBAL.CSS — Système de design unifié
+   Palette : Vert olive naturel, fond doux, élégant
+   À importer dans frontend/src/main.jsx ou index.css
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap');
+
+/* ============================================================
+   VARIABLES GLOBALES — Palette commune
+   ============================================================ */
+:root {
+  /* ── Fonds (doux, pas trop sombre) */
+  --bg-base:        #f2f5ee;        /* fond principal : vert très pâle */
+  --bg-surface:     #ffffff;        /* cartes, modals */
+  --bg-elevated:    #e8edd f;       /* sections surélevées */
+  --bg-subtle:      #eaf0e2;        /* zones secondaires */
+  --bg-dark:        #1a2e12;        /* sidebar, accents sombres */
+  --bg-dark-2:      #22391a;        /* gradient sidebar */
+
+  /* ── Couleurs accent (vert olive / lime) */
+  --lime:           #6aaa1c;        /* vert principal */
+  --lime-light:     #8ecf3a;        /* hover, focus */
+  --lime-pale:      #c8e89a;        /* badges, highlights légers */
+  --lime-bg:        rgba(106, 170, 28, 0.10);
+  --lime-border:    rgba(106, 170, 28, 0.25);
+  --lime-border-strong: rgba(106, 170, 28, 0.50);
+
+  /* ── Texte */
+  --text-primary:   #1c2e10;        /* titres, corps foncé */
+  --text-secondary: #4a6630;        /* texte secondaire */
+  --text-muted:     #8aab6a;        /* placeholders, labels */
+  --text-on-dark:   #e8f4d0;        /* texte sur fond sombre */
+  --text-on-dark-muted: rgba(200, 230, 150, 0.65);
+
+  /* ── Bordures */
+  --border-light:   rgba(106, 170, 28, 0.15);
+  --border-medium:  rgba(106, 170, 28, 0.28);
+  --border-strong:  rgba(106, 170, 28, 0.55);
+
+  /* ── Ombres */
+  --shadow-sm:      0 2px 8px rgba(30, 70, 10, 0.08);
+  --shadow-md:      0 8px 24px rgba(30, 70, 10, 0.12);
+  --shadow-lg:      0 16px 48px rgba(30, 70, 10, 0.16);
+  --shadow-xl:      0 32px 80px rgba(30, 70, 10, 0.20);
+
+  /* ── Typographie */
+  --font-body:      'DM Sans', sans-serif;
+  --font-display:   'Playfair Display', Georgia, serif;
+  --font-mono:      'DM Mono', 'Courier New', monospace;
+
+  /* ── Rayons */
+  --radius-sm:      8px;
+  --radius-md:      14px;
+  --radius-lg:      20px;
+  --radius-xl:      28px;
+  --radius-pill:    999px;
+
+  /* ── Transitions */
+  --transition:     all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--transition);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input, select, textarea {
+  font-family: var(--font-body);
+}
+
+
+/* ============================================================
+   NAVBAR GLOBALE
+   ============================================================ */
+.header-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  height: 68px;
+  background: rgba(242, 245, 238, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.header-section-left-part h5 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--lime);
+  letter-spacing: 0.02em;
+}
+
+.header-section-right-part {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.header-section-right-part a {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+
+.header-section-right-part a:hover {
+  color: var(--lime);
+  background: var(--lime-bg);
+}
+
+
+/* ============================================================
+   FOOTER GLOBAL
+   ============================================================ */
+.footer-section {
+  background: var(--bg-dark);
+  border-top: 1px solid var(--border-light);
+  padding: 28px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.footer-left-section {
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  color: var(--text-on-dark-muted);
+  line-height: 1.5;
+}
+
+
+/* ============================================================
+   BOOKING WRAPPER (SelectionTerrain, PageDateHeure, Reservation)
+   ============================================================ */
+.booking-wrapper {
+  display: flex;
+  min-width: 1100px;
+  min-height: 600px;
+  max-width: 1400px;
+  background: var(--bg-surface);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  margin: 2rem auto;
+  border: 1px solid var(--border-light);
+}
+
+/* Page wrapper pour centrer le booking-wrapper */
+.page-booking {
+  min-height: 100vh;
+  background: var(--bg-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+
+/* ============================================================
+   SIDEBAR (étapes de réservation)
+   ============================================================ */
+.sidebar {
+  width: 260px;
+  min-width: 260px;
+  background: linear-gradient(170deg, var(--bg-dark-2) 0%, var(--bg-dark) 100%);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.6rem;
+  position: relative;
+}
+
+.sidebar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, var(--lime-border), transparent);
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.55rem 0;
+  opacity: 0.45;
+  transition: var(--transition);
+}
+
+.step.active {
+  opacity: 1;
+}
+
+.step-icon {
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.step.active .step-icon {
+  background: var(--lime-bg);
+  border-color: var(--lime-border-strong);
+}
+
+.step-icon svg {
+  width: 16px;
+  height: 16px;
+  color: var(--text-on-dark);
+}
+
+.step span {
+  flex: 1;
+  color: var(--text-on-dark);
+  font-size: 0.83rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.step-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.25);
+  flex-shrink: 0;
+}
+
+.active-dot {
+  background: var(--lime-pale);
+  border-color: var(--lime-pale);
+}
+
+
+/* ============================================================
+   FORMULAIRES — Inputs, Labels, Selects
+   ============================================================ */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.form-input,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="password"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  transition: var(--transition);
+  outline: none;
+}
+
+.form-input::placeholder,
+input::placeholder {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.form-input:focus,
+input:focus {
+  border-color: var(--lime);
+  box-shadow: 0 0 0 3px var(--lime-bg);
+  background: #fff;
+}
+
+select {
+  width: 100%;
+  padding: 0.75rem 2.2rem 0.75rem 1rem;
+  border: 1.5px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  appearance: none;
+  cursor: pointer;
+  transition: var(--transition);
+  outline: none;
+}
+
+select:focus {
+  border-color: var(--lime);
+  box-shadow: 0 0 0 3px var(--lime-bg);
+}
+
+
+/* ============================================================
+   BOUTONS GLOBAUX
+   ============================================================ */
+
+/* Bouton principal */
+.btn-primary,
+.btn-continuer-date,
+.confirm-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2.2rem;
+  background: linear-gradient(135deg, var(--lime-light) 0%, var(--lime) 100%);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  box-shadow: 0 8px 24px rgba(106, 170, 28, 0.30);
+  transition: var(--transition);
+}
+
+.btn-primary:hover,
+.btn-continuer-date:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(106, 170, 28, 0.42);
+  background: linear-gradient(135deg, #9fd940 0%, #7ab820 100%);
+}
+
+.btn-primary:disabled,
+.btn-continuer-date:disabled {
+  background: var(--bg-subtle);
+  color: var(--text-muted);
+  box-shadow: none;
+  transform: none;
+  pointer-events: none;
+}
+
+/* Bouton secondaire */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.8rem;
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--border-medium);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-secondary:hover {
+  border-color: var(--lime);
+  color: var(--lime);
+  background: var(--lime-bg);
+}
+
+/* Bouton ghost (retour, annuler) */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.2rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+
+.btn-ghost:hover {
+  color: var(--lime);
+  background: var(--lime-bg);
+}
+
+
+/* ============================================================
+   CARTES GÉNÉRIQUES
+   ============================================================ */
+.card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border-medium);
+}
+
+.card-header {
+  padding: 1.5rem 1.8rem 1rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.card-body {
+  padding: 1.5rem 1.8rem;
+}
+
+
+/* ============================================================
+   BADGES & LABELS
+   ============================================================ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.8rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.badge-green {
+  background: rgba(106, 170, 28, 0.12);
+  color: var(--lime);
+  border: 1px solid var(--lime-border);
+}
+
+.badge-neutral {
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-light);
+}
+
+.section-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--lime);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.section-label::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: var(--lime-light);
+  border-radius: 2px;
+}
+
+
+/* ============================================================
+   TERRAIN CARD
+   ============================================================ */
+.terrain-card {
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+}
+
+.terrain-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-lg);
+}
+
+.terrain-card.selected {
+  border-color: var(--lime);
+  box-shadow: var(--shadow-lg), 0 0 0 3px var(--lime-bg);
+}
+
+.terrain-type-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(255, 255, 255, 0.90);
+  border: 1px solid var(--border-medium);
+  color: var(--lime);
+  padding: 0.28rem 0.75rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  backdrop-filter: blur(8px);
+}
+
+
+/* ============================================================
+   CALENDRIER (DateHeure)
+   ============================================================ */
+.cal-day {
+  text-align: center;
+  padding: 0.55rem 0.2rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: var(--transition);
+  background: transparent;
+  color: var(--text-primary);
+}
+
+.cal-day.past,
+.cal-day.today {
+  color: var(--text-muted);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.cal-day.other-month {
+  color: var(--border-medium);
+  cursor: default;
+}
+
+.cal-day.available {
+  background: var(--bg-subtle);
+  border-color: var(--border-light);
+  color: var(--text-secondary);
+}
+
+.cal-day.available:hover {
+  background: var(--lime-bg);
+  border-color: var(--lime-border-strong);
+  color: var(--lime);
+}
+
+.cal-day.available.selected {
+  background: rgba(106, 170, 28, 0.15);
+  border-color: var(--lime);
+  color: var(--lime);
+  box-shadow: 0 0 0 2px rgba(106, 170, 28, 0.20);
+}
+
+.cal-header {
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  padding: 0.3rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.horaire-btn {
+  padding: 0.65rem 1rem;
+  border: 1.5px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  background: var(--bg-subtle);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.horaire-btn:hover {
+  background: var(--lime-bg);
+  border-color: var(--lime-border-strong);
+  color: var(--lime);
+}
+
+.horaire-btn.selected {
+  background: rgba(106, 170, 28, 0.15);
+  border-color: var(--lime);
+  color: var(--lime);
+  box-shadow: 0 0 0 2px var(--lime-bg);
+}
+
+.horaire-btn.occupied {
+  background: var(--bg-subtle) !important;
+  color: var(--text-muted) !important;
+  border-color: var(--border-light) !important;
+  cursor: not-allowed !important;
+  text-decoration: line-through;
+  opacity: 0.55;
+}
+
+
+/* ============================================================
+   PAYMENT PAGE
+   ============================================================ */
+.payment-page {
+  min-height: 100vh;
+  background: var(--bg-base);
+  padding: 40px 24px;
+  font-family: var(--font-body);
+}
+
+.payment-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.payment-form-container,
+.order-summary-container {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+.method-tab {
+  flex: 1;
+  padding: 10px 12px;
+  text-align: center;
+  border: 1.5px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  color: var(--text-secondary);
+}
+
+.method-tab.active {
+  border-color: var(--lime);
+  background: var(--lime-bg);
+  color: var(--lime);
+}
+
+
+/* ============================================================
+   ADMIN PANEL
+   ============================================================ */
+.admin-container {
+  min-height: 100vh;
+  background: var(--bg-base);
+  padding: 2rem;
+  font-family: var(--font-body);
+}
+
+.admin-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 2rem;
+  padding: 0.5rem;
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  width: fit-content;
+}
+
+.admin-tab {
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius-md);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.admin-tab.active {
+  background: var(--lime-bg);
+  color: var(--lime);
+  border: 1px solid var(--lime-border);
+}
+
+.admin-tab:hover:not(.active) {
+  background: var(--bg-subtle);
+  color: var(--text-primary);
+}
+
+.admin-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-md);
+  padding: 1.8rem;
+}
+
+.admin-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1.2rem;
+}
+
+.logout-btn {
+  margin-left: auto;
+  padding: 0.55rem 1.2rem;
+  background: transparent;
+  color: #c0392b;
+  border: 1.5px solid rgba(192, 57, 43, 0.3);
+  border-radius: var(--radius-sm);
+  font-size: 0.83rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.logout-btn:hover {
+  background: rgba(192, 57, 43, 0.08);
+  border-color: #c0392b;
+}
+
+
+/* ============================================================
+   RESERVATION SUMMARY (barre fixe)
+   ============================================================ */
+.reservation-summary-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem 2rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+
+/* ============================================================
+   LOADING / OVERLAY
+   ============================================================ */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(242, 245, 238, 0.80);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--lime);
+}
+
+
+/* ============================================================
+   SCROLLBAR CUSTOMISÉE
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-subtle);
+  border-radius: var(--radius-pill);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--lime-border-strong);
+  border-radius: var(--radius-pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--lime);
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1100px) {
+  .booking-wrapper {
+    min-width: unset;
+    width: 100%;
+    border-radius: var(--radius-lg);
+    margin: 1rem;
+  }
+
+  .payment-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-section {
+    padding: 0 20px;
+  }
+
+  .footer-section {
+    padding: 20px;
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+  }
+
+  .booking-wrapper {
+    flex-direction: column;
+    margin: 0;
+    border-radius: 0;
+    min-height: 100vh;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-width: unset;
+    flex-direction: row;
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+
+  .page-booking {
+    padding: 0;
+    align-items: flex-start;
+  }
+}

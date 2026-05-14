@@ -16,7 +16,7 @@ function SelectActivite2() {
     setLoading(true);
     getAllTerrains()
       .then((res) => {
-        // Conserver toutes les propriétés (dont lat, lng)
+        
         const terrainsList = res.data.map(t => ({
           ...t,
           activite: 'football',
@@ -64,7 +64,7 @@ function SelectActivite2() {
         <div className="header-line"></div>
       </div>
 
-      {error && <div className="error-banner">⚠️ {error}</div>}
+      {error && <div className="error-banner"> {error}</div>}
 
       <div className="filters-container">
         <div className="filter-group">
@@ -110,15 +110,15 @@ function SelectActivite2() {
                 <div className="terrain-info">
                   <h3>{terrain.nom}</h3>
                   <div className="terrain-details">
-                    <span>📍 {terrain.ville}</span>
-                    <span>⏱️ {terrain.prix}</span>
-                    <span>👥 {terrain.capacity}</span>
-                    {terrain.surface && <span>🌿 {terrain.surface}</span>}
+                    <span> {terrain.ville}</span>
+                    <span> {terrain.prix}</span>
+                    <span> {terrain.capacity}</span>
+                    {terrain.surface && <span> {terrain.surface}</span>}
                   </div>
                   {/* Intégration du lien Google Maps */}
                   {terrain.lat && terrain.lng && (
                     <div style={{ marginTop: '8px' }}>
-                      <MapLink lat={terrain.lat} lng={terrain.lng} text="📍 Voir l'emplacement" />
+                      <MapLink lat={terrain.lat} lng={terrain.lng} text=" Voir l'emplacement" />
                     </div>
                   )}
                 </div>

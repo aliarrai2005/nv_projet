@@ -75,15 +75,10 @@ function Sidebar({ etapeActive }) {
       <div className="sidebar-contact">
         <p className="contact-label">Prenez contact</p>
         <p>+212632251552</p>
-        <p>contact@adesl-bernoussi.ma</p>
+        <p>FSTM-ILISI.ma</p>
       </div>
 
-      <button className="sidebar-toggle">
-        Réduire le menu
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
-      </button>
+      
     </aside>
   )
 }
